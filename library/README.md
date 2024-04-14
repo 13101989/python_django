@@ -21,7 +21,7 @@ python manage.py runserver
 # Prepare Heroku deployment
 
 ```bash
-python -m pip install whitenoise==6.0.0
+python -m pip install whitenoise==6.0.0 # tool that helps to serve static files
 python manage.py collectstatic
 python -m pip install gunicorn~=20.1.0
 python -m pip freeze > requirements.txt
