@@ -7,11 +7,15 @@ source .venv/Scripts/activate
 python -m pip install django~=4.0.0
 
 django-admin startproject django_project .
-python manage.py startapp todos
 python manage.py migrate
 
-python manage.py createsuperuser
+python manage.py startapp todos
+python manage.py makemigrations todos
+python manage.py migrate
 python manage.py test todos
+
+python manage.py createsuperuser
+
 python manage.py runserver
 ```
 
