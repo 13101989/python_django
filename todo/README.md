@@ -37,9 +37,9 @@ mkdir Procfile # insert start command for the app
 
 ```bash
 heroku login
-heroku create python-django-library
+heroku create python-django-todos
 cd <root>
-git subtree push --prefix library heroku main # push only library folder from repo
+git subtree push --prefix todo heroku main # push only todo folder from repo
 heroku ps:scale web=1 # deploy on one container 
 heroku open # open app url
 heroku ps:scale web=0 # remove deployment
