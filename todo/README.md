@@ -5,6 +5,7 @@ cd <root>/todo
 python -m venv .venv 
 source .venv/Scripts/activate
 python -m pip install django~=4.0.0
+python -m pip install djangorestframework~=3.13.0
 
 django-admin startproject django_project .
 python manage.py migrate
