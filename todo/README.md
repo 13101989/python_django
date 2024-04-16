@@ -39,8 +39,9 @@ mkdir Procfile # insert start command for the app
 heroku login
 heroku create python-django-todos
 cd <root>
-git subtree push --prefix todo heroku main # push only todo folder from repo
+git push heroku `git subtree split --prefix todo main`:main --force # push only todo folder from repo, overwrites existing main branch from heroku
 heroku ps:scale web=1 # deploy on one container 
 heroku open # open app url
 heroku ps:scale web=0 # remove deployment
+heroku logs --tail # check logs for deployment
 ```

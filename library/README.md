@@ -39,4 +39,5 @@ git subtree push --prefix library heroku main # push only library folder from re
 heroku ps:scale web=1 # deploy on one container 
 heroku open # open app url
 heroku ps:scale web=0 # remove deployment
+heroku logs --tail # check logs for deployment
 ```
