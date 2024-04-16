@@ -8,10 +8,15 @@ python -m pip install django~=4.0.0
 python -m pip install djangorestframework~=3.13.0
 
 django-admin startproject django_project .
+
 python manage.py startapp accounts
 python manage.py makemigrations accounts
 python manage.py migrate
-python manage.py test accounts
+
+python manage.py startapp posts
+python manage.py makemigrations posts
+python manage.py migrate
+python manage.py test posts
 
 python manage.py createsuperuser
 
