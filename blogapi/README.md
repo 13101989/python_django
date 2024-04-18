@@ -49,3 +49,11 @@ heroku open # open app url
 heroku ps:scale web=0 # remove deployment
 heroku logs --tail # check logs for deployment
 ```
+
+# implement authentication
+
+```bash
+python -m pip install dj-rest-auth==2.1.11 # for login logout purposes
+python -m pip install django-allauth~=0.48.0 # for registration
+
+```
