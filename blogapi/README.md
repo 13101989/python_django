@@ -50,10 +50,17 @@ heroku ps:scale web=0 # remove deployment
 heroku logs --tail # check logs for deployment
 ```
 
-# implement authentication
+# Implement authentication and registration
 
 ```bash
 python -m pip install dj-rest-auth==2.1.11 # for login logout purposes
 python -m pip install django-allauth~=0.48.0 # for registration
+```
+
+# Document project
+
+```bash
+python -m pip install drf-spectacular~=0.21.0
+python manage.py spectacular --file schema.yml
 
 ```
