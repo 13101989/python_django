@@ -32,12 +32,17 @@ mkdir Procfile # insert start command for the app
 # Deploy to Heroku
 
 ```bash
-heroku login
-heroku create python-django-library
 cd <root>
-git subtree push --prefix library heroku main # push only library folder from repo
+heroku login
+heroku git:remote -a python-django-library # heroku app will point to git repo
+heroku create python-django-library # heroku creates a container for the app, name must be globally unique
+
+git subtree split --prefix library main --branch temp_library # create temp branch from library subfolder
+git push heroku temp_library:main --force # deploy content from temp_library branch to heroku
+
 heroku ps:scale web=1 # deploy on one container 
 heroku open # open app url
-heroku ps:scale web=0 # remove deployment
+
 heroku logs --tail # check logs for deployment
+heroku ps:scale web=0 # remove deployment
 ```

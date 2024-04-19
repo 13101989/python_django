@@ -37,12 +37,17 @@ mkdir Procfile # insert start command for the app
 # Deploy to Heroku
 
 ```bash
-heroku login
-heroku create python-django-todos
 cd <root>
-git push heroku `git subtree split --prefix todo main`:main --force # push only todo folder from repo, overwrites existing main branch from heroku
+heroku login
+heroku git:remote -a python-django-todos # heroku app will point to git repo
+heroku create python-django-todos # heroku creates a container for the app, name must be globally unique
+
+git subtree split --prefix library main --branch temp_todos # create temp branch from todos subfolder
+git push heroku temp_todos:main --force # deploy content from temp_todos branch to heroku
+
 heroku ps:scale web=1 # deploy on one container 
 heroku open # open app url
-heroku ps:scale web=0 # remove deployment
+
 heroku logs --tail # check logs for deployment
+heroku ps:scale web=0 # remove deployment
 ```
