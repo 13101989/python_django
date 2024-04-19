@@ -64,3 +64,8 @@ python -m pip install drf-spectacular~=0.21.0
 python manage.py spectacular --file schema.yml
 
 ```
+ # Environment variables
+
+```bash
+ python -m pip install 'environs[django]==9.5.0'
+ ```
