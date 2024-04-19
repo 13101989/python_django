@@ -31,7 +31,8 @@ mkdir static
 cd static
 python -m pip install whitenoise==5.3.0 # tool that helps to serve static files
 python manage.py collectstatic
-python -m pip install gunicorn~=20.1.0 # will be used as production web server for the application
+python -m pip install psycopg2==2.9.3 # database adapter between django app and PostgreSQL, needs db installed when the os
+python -m pip install gunicorn==20.1.0 # will be used as production web server for the application
 python -m pip freeze > requirements.txt
 mkdir runtime.txt # insert python version to be used
 mkdir Procfile # insert start command for the app
@@ -68,4 +69,6 @@ python manage.py spectacular --file schema.yml
 
 ```bash
  python -m pip install 'environs[django]==9.5.0'
+ python -c "import secrets; print(secrets.token_urlsafe())" # generate a new Django SECRET_KEY
+
  ```
