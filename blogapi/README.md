@@ -43,13 +43,18 @@ mkdir Procfile # insert start command for the app
 ```bash
 heroku login
 heroku create python-django-blogapi # heroku creates a container for the app, name must be globally unique
+heroku git:remote -a python-django-blogapi # change git remote to the new appp
 heroku addons:create heroku-postgresql:mini -a python-django-blogapi # creates a PostgreSQL db on heroku
-heroku config:set SECRET_KEY="DJANGO_SECRET_KEY" # add env var to heroku, other 2 env var are already defined DATABASE_URL (when creating db) and DEBUG has False value as default
+heroku config:set SECRET_KEY="DJANGO_SECRET_KEY" -a python-django-blogapi # add env var to heroku, other 2 env var are already defined DATABASE_URL (when creating db) and DEBUG has False value as default
 heroku config -a python-django-blogapi # check env vars in heroku
 
 cd <root>
-git push heroku `git subtree split --prefix blogapi main`:main --force # push only blogapi folder from repo, overwrites existing main branch from heroku
+git push heroku `git subtree split --prefix blogapi main`:main --force # push only blogapi folder from repo, overwrites existing main branch from heroku, make sure to have all the changes pushed to git before running this
 heroku ps:scale web=1 # deploy on one container 
+
+heroku run python manage.py migrate # provision the new PostgreSQL db
+heroku run python manage.py createsuperuser
+
 heroku open # open app url
 heroku ps:scale web=0 # remove deployment
 heroku logs --tail # check logs for deployment
